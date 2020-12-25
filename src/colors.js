@@ -20,12 +20,16 @@ const stopBtn = document.querySelector('button[data-action="stop"]');
 const changeColors = {
   intervalId: null,
   isActive: false,
+
   start() {
     if (this.isActive) {
       return;
     }
+
     this.isActive = true;
+
     this.intervalId = setInterval(() => {
+      startBtn.setAttribute('disabled', true);
       let color = randomIntegerFromInterval(0, colors.length - 1);
       let randColor = colors[color];
       body.style.backgroundColor = randColor;
@@ -36,6 +40,7 @@ const changeColors = {
     clearInterval(this.intervalId);
     this.intervalId = null;
     this.isActive = false;
+    startBtn.removeAttribute('disabled');
   },
 };
 
